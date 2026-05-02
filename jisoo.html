@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>지수에게 🌸</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream: #faf6ef;
+      --warm: #f0e8d8;
+      --ink: #2c2416;
+      --ink-light: #6b5d4a;
+      --accent: #c8522a;
+      --gold: #c9a84c;
+    }
+
+    body {
+      min-height: 100vh;
+      background-color: var(--cream);
+      background-image:
+        radial-gradient(ellipse at 15% 40%, rgba(200,82,42,0.05) 0%, transparent 55%),
+        radial-gradient(ellipse at 85% 70%, rgba(201,168,76,0.07) 0%, transparent 50%),
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Ccircle cx='30' cy='30' r='0.7' fill='%23c9a84c' opacity='0.15'/%3E%3C/svg%3E");
+      font-family: 'Noto Sans KR', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 4rem 1.5rem 4rem;
+    }
+
+    /* 상단 꾸밈 요소 */
+    .header-deco {
+      text-align: center;
+      margin-bottom: 2.5rem;
+      animation: fadeDown 0.7s ease both;
+    }
+    .header-deco .year {
+      font-family: 'Nanum Myeongjo', serif;
+      font-size: 0.75rem;
+      letter-spacing: 0.3em;
+      color: var(--gold);
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: 0.4rem;
+    }
+    .header-deco .to-label {
+      font-size: 0.72rem;
+      color: var(--ink-light);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    @keyframes fadeDown {
+      from { opacity: 0; transform: translateY(-16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* 편지지 카드 */
+    .letter-card {
+      background: #fffdf8;
+      border: 1px solid rgba(201,168,76,0.25);
+      border-radius: 4px;
+      padding: 3rem 3rem 3.5rem;
+      width: 100%;
+      max-width: 560px;
+      position: relative;
+      box-shadow:
+        0 2px 4px rgba(44,36,22,0.05),
+        0 16px 48px rgba(44,36,22,0.10);
+      animation: fadeUp 0.8s 0.2s ease both;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(28px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* 우표 스타일 장식 */
+    .letter-card::before {
+      content: '🌸';
+      position: absolute;
+      top: 1.2rem;
+      right: 1.5rem;
+      font-size: 1.8rem;
+      opacity: 0.6;
+    }
+
+    /* 편지지 선 (줄노트 느낌) */
+    .letter-lines {
+      position: absolute;
+      inset: 0;
+      border-radius: 4px;
+      overflow: hidden;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .letter-lines::after {
+      content: '';
+      position: absolute;
+      left: 0; right: 0; top: 0;
+      height: 100%;
+      background-image: repeating-linear-gradient(
+        to bottom,
+        transparent,
+        transparent 39px,
+        rgba(201,168,76,0.1) 39px,
+        rgba(201,168,76,0.1) 40px
+      );
+      background-position: 0 80px;
+    }
+
+    .letter-content { position: relative; z-index: 1; }
+
+    .recipient {
+      font-family: 'Nanum Myeongjo', serif;
+      font-size: 1.9rem;
+      font-weight: 800;
+      color: var(--ink);
+      margin-bottom: 0.2rem;
+    }
+
+    .recipient-sub {
+      font-size: 0.8rem;
+      color: var(--ink-light);
+      margin-bottom: 2rem;
+      font-weight: 300;
+    }
+
+    .divider {
+      width: 40px;
+      height: 2px;
+      background: linear-gradient(90deg, var(--gold), var(--accent));
+      border-radius: 2px;
+      margin-bottom: 1.8rem;
+    }
+
+    .letter-body {
+      font-family: 'Nanum Myeongjo', serif;
+      font-size: 1.05rem;
+      color: var(--ink);
+      line-height: 2.1;
+      word-break: keep-all;
+    }
+
+    /* 서명 */
+    .signature {
+      margin-top: 2.5rem;
+      text-align: right;
+    }
+    .signature .from {
+      font-size: 0.72rem;
+      color: var(--ink-light);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: 0.3rem;
+    }
+    .signature .name {
+      font-family: 'Nanum Myeongjo', serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--accent);
+    }
+
+    /* 하단 날짜 */
+    .letter-footer {
+      margin-top: 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.72rem;
+      color: #bbb0a0;
+      letter-spacing: 0.06em;
+      animation: fadeUp 0.8s 0.5s ease both;
+      opacity: 0;
+      animation-fill-mode: both;
+      width: 100%;
+      max-width: 560px;
+    }
+
+    .back-btn {
+      color: var(--ink-light);
+      text-decoration: none;
+      font-size: 0.78rem;
+      letter-spacing: 0.06em;
+      border-bottom: 1px dashed rgba(107,93,74,0.4);
+      padding-bottom: 1px;
+      transition: color 0.2s;
+    }
+    .back-btn:hover { color: var(--accent); border-color: var(--accent); }
+  </style>
+</head>
+<body>
+
+  <div class="header-deco">
+    <span class="year">✉ Olpie's Letter</span>
+    <span class="to-label">누구보다 특별한 너를 위해</span>
+  </div>
+
+  <div class="letter-card">
+    <div class="letter-lines"></div>
+    <div class="letter-content">
+
+      <div class="recipient">너에게만 주는 편지,</div>
+      <div class="recipient-sub">To. 윤지수 🌸</div>
+      <div class="divider"></div>
+
+      <div class="letter-body">
+        지수야 안녕?ㅋㅋㅋㅋ아마 네 생일 이후로 너한테 2번째로 쓰는 편지 같다.
+         너는 사실 내 기준 가장 친한 친구들 중 한 명이기도 하고 6학년때는 매일 붙어다녔으니까 사실 굳이 편지를 안써도 내가 뭘 말하고 싶은지 알 것 같아.
+         (근데 넌 눈치가 없어서 모를지도 그래서 편지 쓰고 있잖아) 
+         우리가 4학년 때 처음 만나서 어떻게 친해졌는지는 사실 기억이 잘 안나는데, 뭐..어떻게든 친해졌겠지?
+          그건 짜피 상관 없으니까ㅋㅋㅋㅋ근데 하나 기억나는건 너를 첨 만나고 이후로 난 친구와 팔짱 낀다는 개념을 처음 알게 되었어..
+          마치 불을 발견한 원시인처럼. 사실 그 전에는 친구와 접촉(?) 자체를 꺼려했었는데 왜 네 팔짱을 거부 안했는지.. 후회중이다(넝담). 
+        아 그리고 비록 나이는 한 살 차이지만 난 너와 그것때문에 노는데에 지장이 있던 적이 없었어. 아마도 너의 유치함에 피로를 느낀 적이 없었다면 새빨간 거짓말이겠지만 가끔씩 보여주는(진짜 가끔) 너의 성숙함에 그냥 나도 모르게 계속 있게 되었던 것 같아..
+        너랑은 사실 7학년 때도 붙어다닐꺼라 딱히 나눌 말이 없다. 
+        그냥 앞에서는 널 겁나 욕하고 거칠게 대하지만 뒤에서는 애들에게 
+        너 칭찬만 하고 있다는 것을 알아두렴... 사..........사............................................사랑해
+      </div>
+
+      <div class="signature">
+        <span class="from">From.</span>
+        <span class="name">올피가💛</span>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="letter-footer">
+    <a href="file:///Users/student/Desktop/6G3%20편지%20html/index.html" class="back-btn">← 돌아가기</a>
+    <span>2026년 · 올피의 편지함</span>
+  </div>
+
+</body>
+</html>

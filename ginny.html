@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>승아에게 🌸</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream: #faf6ef;
+      --warm: #f0e8d8;
+      --ink: #2c2416;
+      --ink-light: #6b5d4a;
+      --accent: #c8522a;
+      --gold: #c9a84c;
+    }
+
+    body {
+      min-height: 100vh;
+      background-color: var(--cream);
+      background-image:
+        radial-gradient(ellipse at 15% 40%, rgba(200,82,42,0.05) 0%, transparent 55%),
+        radial-gradient(ellipse at 85% 70%, rgba(201,168,76,0.07) 0%, transparent 50%),
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Ccircle cx='30' cy='30' r='0.7' fill='%23c9a84c' opacity='0.15'/%3E%3C/svg%3E");
+      font-family: 'Noto Sans KR', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 4rem 1.5rem 4rem;
+    }
+
+    /* 상단 꾸밈 요소 */
+    .header-deco {
+      text-align: center;
+      margin-bottom: 2.5rem;
+      animation: fadeDown 0.7s ease both;
+    }
+    .header-deco .year {
+      font-family: 'Nanum Myeongjo', serif;
+      font-size: 0.75rem;
+      letter-spacing: 0.3em;
+      color: var(--gold);
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: 0.4rem;
+    }
+    .header-deco .to-label {
+      font-size: 0.72rem;
+      color: var(--ink-light);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    @keyframes fadeDown {
+      from { opacity: 0; transform: translateY(-16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* 편지지 카드 */
+    .letter-card {
+      background: #fffdf8;
+      border: 1px solid rgba(201,168,76,0.25);
+      border-radius: 4px;
+      padding: 3rem 3rem 3.5rem;
+      width: 100%;
+      max-width: 560px;
+      position: relative;
+      box-shadow:
+        0 2px 4px rgba(44,36,22,0.05),
+        0 16px 48px rgba(44,36,22,0.10);
+      animation: fadeUp 0.8s 0.2s ease both;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(28px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* 우표 스타일 장식 */
+    .letter-card::before {
+      content: '🌸';
+      position: absolute;
+      top: 1.2rem;
+      right: 1.5rem;
+      font-size: 1.8rem;
+      opacity: 0.6;
+    }
+
+    /* 편지지 선 (줄노트 느낌) */
+    .letter-lines {
+      position: absolute;
+      inset: 0;
+      border-radius: 4px;
+      overflow: hidden;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .letter-lines::after {
+      content: '';
+      position: absolute;
+      left: 0; right: 0; top: 0;
+      height: 100%;
+      background-image: repeating-linear-gradient(
+        to bottom,
+        transparent,
+        transparent 39px,
+        rgba(201,168,76,0.1) 39px,
+        rgba(201,168,76,0.1) 40px
+      );
+      background-position: 0 80px;
+    }
+
+    .letter-content { position: relative; z-index: 1; }
+
+    .recipient {
+      font-family: 'Nanum Myeongjo', serif;
+      font-size: 1.9rem;
+      font-weight: 800;
+      color: var(--ink);
+      margin-bottom: 0.2rem;
+    }
+
+    .recipient-sub {
+      font-size: 0.8rem;
+      color: var(--ink-light);
+      margin-bottom: 2rem;
+      font-weight: 300;
+    }
+
+    .divider {
+      width: 40px;
+      height: 2px;
+      background: linear-gradient(90deg, var(--gold), var(--accent));
+      border-radius: 2px;
+      margin-bottom: 1.8rem;
+    }
+
+    .letter-body {
+      font-family: 'Nanum Myeongjo', serif;
+      font-size: 1.05rem;
+      color: var(--ink);
+      line-height: 2.1;
+      word-break: keep-all;
+    }
+
+    /* 서명 */
+    .signature {
+      margin-top: 2.5rem;
+      text-align: right;
+    }
+    .signature .from {
+      font-size: 0.72rem;
+      color: var(--ink-light);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: 0.3rem;
+    }
+    .signature .name {
+      font-family: 'Nanum Myeongjo', serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--accent);
+    }
+
+    /* 하단 날짜 */
+    .letter-footer {
+      margin-top: 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.72rem;
+      color: #bbb0a0;
+      letter-spacing: 0.06em;
+      animation: fadeUp 0.8s 0.5s ease both;
+      opacity: 0;
+      animation-fill-mode: both;
+      width: 100%;
+      max-width: 560px;
+    }
+
+    .back-btn {
+      color: var(--ink-light);
+      text-decoration: none;
+      font-size: 0.78rem;
+      letter-spacing: 0.06em;
+      border-bottom: 1px dashed rgba(107,93,74,0.4);
+      padding-bottom: 1px;
+      transition: color 0.2s;
+    }
+    .back-btn:hover { color: var(--accent); border-color: var(--accent); }
+  </style>
+</head>
+<body>
+
+  <div class="header-deco">
+    <span class="year">✉ 2026 · Olpie's Letter</span>
+    <span class="to-label">누구보다 특별한 너를 위해</span>
+  </div>
+
+  <div class="letter-card">
+    <div class="letter-lines"></div>
+    <div class="letter-content">
+
+      <div class="recipient">너에게만 주는 편지,</div>
+      <div class="recipient-sub">To. 오승아 🌸</div>
+      <div class="divider"></div>
+
+      <div class="letter-body">
+        승아야!! 넌 어쩜 그렇게 귀엽니
+        너 얼굴 볼때마다 약간 시골손녀느낌나 완전 귀여워
+        난 내가 너한테 먼저 연락해도 되나 솔직히 고민 많이 했어..
+        왜냐묜 난 너가 너무 좋앗지만 너가 나한테는 그냥 반 친구 였을수도 있자나. 
+        근데 너가 나한테 따뜻하게 대해주는 것 보고 마음이 바뀌었어
+        내 사소한 펑 하나하나마저 진심으로 공감해주고 반응해주는 것 볼 때마다 감동이었지만
+        한편으로는 너에게 더 자주 연락하지 못하는 내가 좀 밉기도 했어.
+        그래서 스프링 타이딩 때 네 얼굴을 봤을 때 얼마나 반가웠는지 몰랑!!
+        너 이름 아직도 지니야? 아니어도 괜찮아 내 마음속에는 아직도 오지니니까..🥰
+        비록 너는 지금 나와 같은 학교를 다니지 않지만, 
+        너가 만약 브랭에 남아있었다면 이 학교는 지금보다 조금 더 따뜻해 졌을거라고 항상 생각하면서 살고 있어😘
+        난 널 브랭에서 하염없이 기다리고 있을게. 다음 년도 스프링 타이딩에도 꼭 와줘. 
+        사랑행 지니얌🥹🥰
+        
+
+      </div>
+
+      <div class="signature">
+        <span class="from">From.</span>
+        <span class="name">올피가💛</span>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="letter-footer">
+    <a href="file:///Users/student/Desktop/6G3%20편지%20html/index.html" class="back-btn">← 돌아가기</a>
+    <span>2026년 · 올피의 편지함</span>
+  </div>
+
+</body>
+</html>
